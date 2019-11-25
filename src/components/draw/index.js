@@ -1,13 +1,14 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, Text } from 'react-native';
+import {DRAW} from '../../utils/constants/gameConfig'
 
 export default function TicTacToeDraw({data}) {
     switch (data) {
-        case 'o':
+        case DRAW.CIRCLE:
             return (
                 <Image style={styles.container} source={require('../../assets/circle.png')}></Image>
             )
-        case 'x':
+        case DRAW.CROSS:
             return (
                 <Image style={styles.container} source={require('../../assets/cross.png')}></Image>
             )

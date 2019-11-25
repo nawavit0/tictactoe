@@ -15,6 +15,7 @@ export default function App() {
     draw: DRAW.CROSS,
     type: PLAYER_TYPE.PLAYER,
   }]
+  
   return (
     <View style={styles.container}>
       <TicTacToeHeader></TicTacToeHeader>
