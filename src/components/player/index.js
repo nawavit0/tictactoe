@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 
 export default function TicTacToePlayer({name, draw, type, isActive, isWin, isDraw}) {

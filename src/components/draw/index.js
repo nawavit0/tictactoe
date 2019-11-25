@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, Text } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import {DRAW} from '../../utils/constants/gameConfig'
 
 export default function TicTacToeDraw({data}) {

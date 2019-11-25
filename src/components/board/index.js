@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { StyleSheet, View, FlatList, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import TicTacToeDraw from '../draw'
 
-export default function TicTacToeBoard({data, allowDraw, onDraw, isPlaying}) {
+export default function TicTacToeBoard({board, allowDraw, onDrawPress, isPlaying}) {
     const numColumns = 3
 
     renderItem = ({item, index}) => {
         return (
-            <TouchableWithoutFeedback onPress={() => onDraw(item.key, allowDraw)} disabled={!isPlaying}>
+            <TouchableWithoutFeedback onPress={() => onDrawPress(item.key, allowDraw)} disabled={!isPlaying}>
                 <View style={item.isHighlight ? styles.itemHighlight : styles.item}>
                     <TicTacToeDraw data={item.value}></TicTacToeDraw>
                 </View>
@@ -17,7 +17,7 @@ export default function TicTacToeBoard({data, allowDraw, onDraw, isPlaying}) {
 
     return (
         <View style={styles.container}>
-            <FlatList data={data} style={styles.board} renderItem={this.renderItem} numColumns={numColumns} />
+            <FlatList data={board} style={styles.board} renderItem={this.renderItem} numColumns={numColumns} />
         </View>
     );
 }
