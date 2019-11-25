@@ -36,16 +36,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         margin: 5,
-        height: Dimensions.get('window').width / 4,
-        width: Dimensions.get('window').width / 4,
+        height: (Dimensions.get('window').width*(80/100))  / 3,
+        width: (Dimensions.get('window').width*(80/100)) / 3,
     },
     itemHighlight: {
         backgroundColor: '#99ffcc',
         alignItems: 'center',
         justifyContent: 'center',
         margin: 5,
-        height: Dimensions.get('window').width / 4,
-        width: Dimensions.get('window').width / 4,
+        height: (Dimensions.get('window').width*(80/100))  / 3,
+        width: (Dimensions.get('window').width*(80/100)) / 3,
     },
   
 });

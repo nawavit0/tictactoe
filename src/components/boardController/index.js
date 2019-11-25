@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import TicTacToeBoard from '../board'
+import TicTacToePlayer from '../player'
 
 export default function TicTacToeBoardController({listPlayer}) {
 
@@ -18,6 +19,8 @@ export default function TicTacToeBoardController({listPlayer}) {
     ])
     const [message, setMessage] = useState('')
     const [isPlaying, setIsPlaying] = useState(true)
+    const [isWinning, setIsWinning] = useState(false)
+    const [isDrawing, setIsDrawing] = useState(false)
     const listWins = [
         [1,2,3],
         [4,5,6],
@@ -43,10 +46,19 @@ export default function TicTacToeBoardController({listPlayer}) {
             if(pathWin.length > 0) {
                 newData = highlightWin(newData, pathWin[0])
                 setIsPlaying(false)
+                setIsWinning(true)
             }
-            else setTurn(turn+1)
+            else {
+                checkDraw()
+            }
         }
         setData(newData)
+    }
+
+    checkDraw = () => {
+        console.log('turn', turn)
+        if(turn === data.length) setIsDrawing(true)
+        else setTurn(turn+1)
     }
 
     checkWin = (data, allowDraw) => {
@@ -82,6 +94,22 @@ export default function TicTacToeBoardController({listPlayer}) {
             >
             </TicTacToeBoard>
             <Text>{message}</Text>
+            {
+                listPlayer.map((player,index) => {
+                    return (
+                        <TicTacToePlayer 
+                            key={index} 
+                            name={player.name} 
+                            draw={player.draw} 
+                            type={player.type} 
+                            isActive={index===(turn-1)%listPlayer.length}
+                            isWin={isWinning && index===(turn-1)%listPlayer.length}
+                            isDraw={isDrawing}
+                        >
+                        </TicTacToePlayer>
+                    )
+                })
+            }
         </View>
     );
 }
