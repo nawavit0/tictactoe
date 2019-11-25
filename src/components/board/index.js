@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, FlatList, Dimensions, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, FlatList, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import TicTacToeDraw from '../draw'
 
-export default function TicTacToeBoard() {
+export default function TicTacToeBoard({allowDraw}) {
 
     const [data, setData] = useState([
         {key: '1', value:''}, 
@@ -22,8 +22,7 @@ export default function TicTacToeBoard() {
         return (
             <TouchableWithoutFeedback onPress={() => onPressOnBoard(item.key)}>
                 <View style={styles.item}>
-                    {/* <TicTacToeDraw data={item.value}></TicTacToeDraw> */}
-                    <Text>{item.value}</Text>
+                    <TicTacToeDraw data={item.value}></TicTacToeDraw>
                 </View>
             </TouchableWithoutFeedback>
         )
@@ -31,7 +30,7 @@ export default function TicTacToeBoard() {
 
     onPressOnBoard = (key) => {
         setData(data.map((o) => {
-            if(o.key===key) return {...o, value: 'O'}
+            if(o.key===key) return {...o, value: allowDraw}
             return o
         }))
     }

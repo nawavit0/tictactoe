@@ -1,21 +1,21 @@
 import React from 'react';
-import { StyleSheet, Image, YellowBox } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 
 export default function TicTacToeDraw({data}) {
-    let drawImage
     switch (data) {
         case 'o':
-            drawImage = require('../../assets/circle.png')
-            break;
+            return (
+                <Image style={styles.container} source={require('../../assets/circle.png')}></Image>
+            )
         case 'x':
-            drawImage = require('../../assets/cross.png')
-            break;
+            return (
+                <Image style={styles.container} source={require('../../assets/cross.png')}></Image>
+            )
         default:
-            break;
+            return (
+                <Image style={styles.container}></Image>
+            )
     }
-    return (
-        <Image style={styles.container} source={drawImage}></Image>
-    );
 }
 
 const styles = StyleSheet.create({
