@@ -4,15 +4,15 @@ import { StyleSheet, View, Text, Dimensions } from 'react-native';
 export default function TicTacToePlayer({name, draw, type, isActive, isWin, isDraw}) {
 
     getGameStatus = (isWin, isDraw) => {
-        if(isWin) return '~ Win ~'
-        else if(isDraw) return ' ~ Draw ~'
+        if (isWin) return '~ Win ~'
+        else if (isDraw) return ' ~ Draw ~'
         else return ''
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.profile}>{`${name} [${draw}]`}</Text>
-            <Text style={styles.game}>{getGameStatus(isWin,isDraw)}</Text>
+            <Text style={styles.profile}>{ `${name} [${draw}]` }</Text>
+            <Text style={styles.game}>{ getGameStatus(isWin,isDraw) }</Text>
             <Text style={isActive ? styles.statusActive : styles.statusInactive}>•</Text>
         </View>
     );

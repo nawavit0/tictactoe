@@ -9,7 +9,7 @@ export default function TicTacToeBoard({board, allowDraw, onDrawPress, isPlaying
         return (
             <TouchableWithoutFeedback onPress={() => onDrawPress(item.key, allowDraw)} disabled={!isPlaying}>
                 <View style={item.isHighlight ? styles.itemHighlight : styles.item}>
-                    <TicTacToeDraw data={item.value}></TicTacToeDraw>
+                    <TicTacToeDraw data={item.value} />
                 </View>
             </TouchableWithoutFeedback>
         )
@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         backgroundColor: '#cc6699',
-        marginTop: 30,
     },
     board: {
         flexGrow: 0,

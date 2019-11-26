@@ -1,22 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import TicTacToeBoard from '../board'
 import TicTacToePlayer from '../player'
 import { PLAYER_TYPE } from '../../utils/constants/gameConfig'
 
 const initFullBoard = [
-    {key: 1, value:'', isHighlight: false}, 
-    {key: 2, value:'', isHighlight: false}, 
-    {key: 3, value:'', isHighlight: false}, 
-    {key: 4, value:'', isHighlight: false},
-    {key: 5, value:'', isHighlight: false}, 
-    {key: 6, value:'', isHighlight: false}, 
-    {key: 7, value:'', isHighlight: false}, 
-    {key: 8, value:'', isHighlight: false}, 
-    {key: 9, value:'', isHighlight: false},
+    { key: 1, value: '', isHighlight: false }, 
+    { key: 2, value: '', isHighlight: false }, 
+    { key: 3, value: '', isHighlight: false }, 
+    { key: 4, value: '', isHighlight: false },
+    { key: 5, value: '', isHighlight: false }, 
+    { key: 6, value: '', isHighlight: false }, 
+    { key: 7, value: '', isHighlight: false }, 
+    { key: 8, value: '', isHighlight: false }, 
+    { key: 9, value: '', isHighlight: false },
 ]
 
-export default function TicTacToeBoardController({listPlayer}) {
+export default function TicTacToeBoardController({ listPlayer }) {
 
     const [turn, setTurn] = useState(1)
     const [fullBoard, setFullBoard] = useState(initFullBoard)
@@ -36,13 +36,17 @@ export default function TicTacToeBoardController({listPlayer}) {
     ]
 
     useEffect(() => {
-        const currentPlayer = listPlayer[(turn-1)%listPlayer.length]
+        const currentPlayer = listPlayer[(turn-1) % listPlayer.length]
         if(currentPlayer.type===PLAYER_TYPE.BOT){
             setIsPlaying(false)
             onDrawPress(getBestMove(fullBoard, currentPlayer.draw, currentPlayer).key, currentPlayer.draw)
             setIsPlaying(true)
         }
     }, [turn]);
+
+    useEffect(() => {
+        onInit()
+    }, [listPlayer])
 
     onInit = () => {
         setTurn(1)
@@ -154,8 +158,7 @@ export default function TicTacToeBoardController({listPlayer}) {
                 allowDraw={listPlayer[(turn-1)%listPlayer.length].draw} 
                 onDrawPress={onDrawPress}
                 isPlaying={isPlaying}
-            >
-            </TicTacToeBoard>
+            />
             <Text>{message}</Text>
             {
                 listPlayer.map((player,index) => {
@@ -168,8 +171,7 @@ export default function TicTacToeBoardController({listPlayer}) {
                             isActive={index===(turn-1)%listPlayer.length}
                             isWin={isWinning && index===(turn-1)%listPlayer.length}
                             isDraw={isDrawing}
-                        >
-                        </TicTacToePlayer>
+                        />
                     )
                 })
             }
@@ -187,6 +189,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     width: '100%',
+    marginVertical: 30,
   },
 
 });
